@@ -2,7 +2,12 @@
 user:
     path: /usuario
     controller: App\Controller\UserController::index
+    methods: [POST]
 
+register:
+    path: /register
+    controller: App\Controller\UserController::register
+    methods: [POST]
     
 #Rutas  Controlador: Video
 video:
