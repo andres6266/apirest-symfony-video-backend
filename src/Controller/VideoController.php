@@ -8,11 +8,24 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class VideoController extends AbstractController
 {
-    
-    public function index(): Response
+
+    private function resjson($data)
     {
-        return $this->render('video/index.html.twig', [
-            'controller_name' => 'VideoController',
-        ]);
+        //Serializacion de datos: convertir objetos a objetos mas simples para convertir en json
+        $json = $this->get('serializer')->serialize($data, 'json');
+
+        //Response con http
+        $response = new Response();
+
+        //Asiganr contenido a la respuesta
+        $response->setContent($json);
+
+        //Indicar formato de respuesta
+        $response->headers->set('Content-Type', 'application/json');
+
+        //Devolver la respuesta
+        return $response;
     }
+    
+    
 }
